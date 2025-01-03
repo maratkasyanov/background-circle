@@ -1,0 +1,54 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: #000; /* Чёрный фон */
+  overflow: hidden;
+  height: 100vh;
+  cursor: pointer;
+}
+
+/* Стили для контейнера с фоном */
+.pulse-background {
+  position: absolute;
+  left: -10%;
+  width: 50vw; /* Ширина контейнера */
+  height: 100vh; /* Высота контейнера */
+  background-image: url('./img/object.png'); /* Устанавливаем картинку как фон */
+  background-position: center; /* Центрируем фоновое изображение */
+  background-repeat: no-repeat; /* Отключаем повторение фона */
+  background-size: 50% 50%; /* Начальный размер фона */
+  animation: pulse 5s infinite alternate; 
+  z-index: 1; /* Фон на нижнем уровне */
+  filter: blur(125px); /* Размытие фона */
+  clip-path: inset(50 0 10 30); /* Можно использовать для добавления размытия по границам */
+}
+
+/* Круг с блюром через псевдоэлемент */
+.circle {
+  position: absolute;
+  top: 7vh;
+  left: 30vw;
+  width: 800px;
+  height: 800px;
+  border-radius: 50%;
+  background: linear-gradient(117.5deg, rgba(49, 51, 64, 0.4) 0.16%, rgba(49, 51, 64, 0) 100%);
+  backdrop-filter: blur(70px);
+  z-index: 3; /* Поверх всех элементов */
+  pointer-events: none;
+}
+
+/* Анимация пульсации фона с размытиями и искажениями */
+@keyframes pulse {
+  0% {
+    background-size: 100% 100%;
+    transform: rotate(5deg) skew(0deg, 0deg); /* Легкое поворачивание и искажение */
+    filter: blur(5px);
+    clip-path: inset(50 0 0 20);
+  }
+  100% {
+    background-size: 140% 140%;
+    transform: rotate(13deg) skew(6deg, 6deg); /* Сильное искажение */
+    filter: blur(35px);
+    clip-path: inset(10 0 20 20);
+  }
+}
